@@ -1,0 +1,17 @@
+[target.xtensa-esp32s3-none-elf]
+linker = "/home/zzccppp/.rustup/toolchains/esp/xtensa-esp-elf/esp-15.2.0_20250920/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc"
+runner = "espflash flash --monitor --chip esp32s3 --flash-size 16mb --flash-mode dio --flash-freq 40mhz"
+
+[env]
+ESP_LOG="info"
+ESPFLASH_SKIP_UPDATE_CHECK="true"
+
+[build]
+rustflags = [
+  "-C", "link-arg=-nostartfiles",
+]
+
+target = "xtensa-esp32s3-none-elf"
+
+[unstable]
+build-std = ["alloc", "core"]

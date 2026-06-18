@@ -1,0 +1,173 @@
+import "../assets/fonts/SourceHanSansSC-Regular.otf";
+
+export component NoteUi inherits Window {
+    in property <int> battery-percent: 100;
+    in property <string> battery-text: "100%";
+    in property <string> charge-text: "电池";
+    in property <string> button-text: "空闲";
+    in property <string> wifi-status: "扫描中";
+    in property <string> wifi-count-text: "0 个热点";
+    in property <string> wifi-rssi-text: "-- dBm";
+    in property <string> wifi-channel-text: "--";
+    in property <bool> enter-pressed: false;
+    in property <bool> down-pressed: false;
+    in property <bool> up-pressed: false;
+    in property <bool> charge-present: false;
+    in property <bool> charge-full: false;
+
+    width: 400px;
+    height: 300px;
+    background: white;
+    default-font-family: "Source Han Sans SC";
+
+    Rectangle {
+        x: 0px;
+        y: 0px;
+        width: 400px;
+        height: 300px;
+        background: white;
+        border-color: black;
+        border-width: 3px;
+    }
+
+    Text {
+        x: 16px;
+        y: 9px;
+        width: 120px;
+        height: 31px;
+        text: "监控屏";
+        color: black;
+        font-size: 24px;
+    }
+
+    Text {
+        x: 138px;
+        y: 18px;
+        width: 132px;
+        height: 16px;
+        text: "ZecTrix Note4";
+        color: black;
+        font-size: 12px;
+    }
+
+    Rectangle {
+        x: 286px;
+        y: 12px;
+        width: 78px;
+        height: 28px;
+        background: white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Rectangle { x: 366px; y: 21px; width: 7px; height: 10px; background: black; }
+    Rectangle { x: 293px; y: 18px; width: 11px; height: 16px; background: battery-percent >= 20 ? black : white; }
+    Rectangle { x: 307px; y: 18px; width: 11px; height: 16px; background: battery-percent >= 40 ? black : white; }
+    Rectangle { x: 321px; y: 18px; width: 11px; height: 16px; background: battery-percent >= 60 ? black : white; }
+    Rectangle { x: 335px; y: 18px; width: 11px; height: 16px; background: battery-percent >= 80 ? black : white; }
+    Rectangle { x: 349px; y: 18px; width: 8px; height: 16px; background: battery-percent >= 96 ? black : white; }
+
+    Text {
+        x: 262px;
+        y: 43px;
+        width: 126px;
+        height: 21px;
+        text: battery-text + " " + charge-text;
+        color: black;
+        font-size: 16px;
+        horizontal-alignment: center;
+    }
+
+    Rectangle { x: 14px; y: 68px; width: 372px; height: 2px; background: black; }
+
+    Rectangle {
+        x: 14px;
+        y: 80px;
+        width: 178px;
+        height: 102px;
+        background: white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Text { x: 24px; y: 88px; width: 72px; height: 22px; text: "网络"; color: black; font-size: 18px; }
+    Text { x: 100px; y: 91px; width: 78px; height: 20px; text: wifi-status; color: black; font-size: 16px; horizontal-alignment: right; }
+    Rectangle { x: 24px; y: 115px; width: 150px; height: 1px; background: black; }
+
+    Text { x: 25px; y: 124px; width: 72px; height: 20px; text: "热点"; color: black; font-size: 16px; }
+    Text { x: 95px; y: 124px; width: 82px; height: 20px; text: wifi-count-text; color: black; font-size: 16px; horizontal-alignment: right; }
+    Text { x: 25px; y: 149px; width: 72px; height: 20px; text: "信号"; color: black; font-size: 16px; }
+    Text { x: 95px; y: 149px; width: 82px; height: 20px; text: wifi-rssi-text; color: black; font-size: 16px; horizontal-alignment: right; }
+    Text { x: 25px; y: 167px; width: 72px; height: 18px; text: "信道"; color: black; font-size: 15px; }
+    Text { x: 95px; y: 167px; width: 82px; height: 18px; text: wifi-channel-text; color: black; font-size: 15px; horizontal-alignment: right; }
+
+    Rectangle {
+        x: 208px;
+        y: 80px;
+        width: 178px;
+        height: 102px;
+        background: white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Text { x: 218px; y: 88px; width: 72px; height: 22px; text: "系统"; color: black; font-size: 18px; }
+    Text { x: 300px; y: 91px; width: 72px; height: 20px; text: "运行中"; color: black; font-size: 16px; horizontal-alignment: right; }
+    Rectangle { x: 218px; y: 115px; width: 150px; height: 1px; background: black; }
+
+    Text { x: 219px; y: 124px; width: 72px; height: 20px; text: "显示"; color: black; font-size: 16px; }
+    Text { x: 293px; y: 124px; width: 78px; height: 20px; text: "400x300"; color: black; font-size: 15px; horizontal-alignment: right; }
+    Text { x: 219px; y: 149px; width: 72px; height: 20px; text: "刷新"; color: black; font-size: 16px; }
+    Text { x: 293px; y: 149px; width: 78px; height: 20px; text: "全刷"; color: black; font-size: 16px; horizontal-alignment: right; }
+    Text { x: 219px; y: 167px; width: 72px; height: 18px; text: "框架"; color: black; font-size: 15px; }
+    Text { x: 293px; y: 167px; width: 78px; height: 18px; text: "Slint"; color: black; font-size: 14px; horizontal-alignment: right; }
+
+    Rectangle {
+        x: 14px;
+        y: 193px;
+        width: 372px;
+        height: 48px;
+        background: white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Text { x: 24px; y: 199px; width: 60px; height: 20px; text: "趋势"; color: black; font-size: 16px; }
+    Text { x: 282px; y: 201px; width: 88px; height: 16px; text: "60s"; color: black; font-size: 12px; horizontal-alignment: right; }
+    Rectangle { x: 24px; y: 228px; width: 30px; height: 3px; background: black; }
+    Rectangle { x: 60px; y: 221px; width: 30px; height: 10px; background: black; }
+    Rectangle { x: 96px; y: 214px; width: 30px; height: 17px; background: black; }
+    Rectangle { x: 132px; y: 218px; width: 30px; height: 13px; background: black; }
+    Rectangle { x: 168px; y: 206px; width: 30px; height: 25px; background: black; }
+    Rectangle { x: 204px; y: 211px; width: 30px; height: 20px; background: black; }
+    Rectangle { x: 240px; y: 200px; width: 30px; height: 31px; background: black; }
+    Rectangle { x: 276px; y: 209px; width: 30px; height: 22px; background: black; }
+    Rectangle { x: 312px; y: 216px; width: 30px; height: 15px; background: black; }
+
+    Rectangle {
+        x: 14px;
+        y: 255px;
+        width: 116px;
+        height: 31px;
+        background: enter-pressed ? black : white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Text { x: 18px; y: 260px; width: 108px; height: 22px; text: "确认 " + button-text; color: enter-pressed ? white : black; font-size: 16px; horizontal-alignment: center; }
+    Rectangle {
+        x: 142px;
+        y: 255px;
+        width: 116px;
+        height: 31px;
+        background: down-pressed ? black : white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Text { x: 146px; y: 260px; width: 108px; height: 22px; text: "向下"; color: down-pressed ? white : black; font-size: 16px; horizontal-alignment: center; }
+    Rectangle {
+        x: 270px;
+        y: 255px;
+        width: 116px;
+        height: 31px;
+        background: up-pressed ? black : white;
+        border-color: black;
+        border-width: 2px;
+    }
+    Text { x: 274px; y: 260px; width: 108px; height: 22px; text: "向上"; color: up-pressed ? white : black; font-size: 16px; horizontal-alignment: center; }
+}
