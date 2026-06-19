@@ -218,14 +218,16 @@ fn apply_ui_state(ui: &zectrix_rs::slint_ui::NoteUi, state: UiState) {
     ui.set_up_pressed(state.up_pressed);
     ui.set_charge_present(state.charge_present);
     ui.set_charge_full(state.charge_full);
-    ui.set_charge_text(if state.charge_full {
-        "充满"
-    } else if state.charge_present {
-        "充电"
-    } else {
-        "电池"
-    }
-    .into());
+    ui.set_charge_text(
+        if state.charge_full {
+            "充满"
+        } else if state.charge_present {
+            "充电"
+        } else {
+            "电池"
+        }
+        .into(),
+    );
     ui.set_button_text(
         if state.enter_pressed {
             "ENTER"
